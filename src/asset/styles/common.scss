@@ -65,6 +65,7 @@ button {
   border: 0 none;
   border-radius: 0;
   background-color: transparent;
+  text-align: left;
   cursor: pointer;
 }
 button::-moz-focus-inner  {
@@ -107,4 +108,39 @@ em,
 var {
   font-style: normal;
   font-weight: normal;
+}
+
+// layout
+.doc_header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: rgba(255,255,255,0.9);
+  box-sizing: border-box;
+  z-index: 5;
+  .tit_header {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.doc_main {
+  max-width: 420px;
+  margin: 0 auto;
+  padding-top: 56px;
+}
+
+// error
+.area_error {
+  display: flex;
+  height: calc(100vh - 56px);
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
 }

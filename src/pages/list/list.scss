@@ -29,12 +29,19 @@
     line-height: 16px;
     color: #eee;
     vertical-align: top;
+    + .tag_g {
+      margin-left: 4px;
+    }
   }
   .item_musical {
     padding: 20px;
     + .item_musical {
       border-top: 1px solid #e5e5e5;
     }
+  }
+  .btn_musical {
+    display: block;
+    width: 100%;
   }
   .musical_thumb {
     .thumb_img {
@@ -43,6 +50,8 @@
       height: 0;
       margin: 0 auto;
       padding-top: 80%;
+      border-radius: 5px;
+      background-color: rgba(0,0,0,0.1);
       background-size: cover;
       background-position: 50% 50%;
     }

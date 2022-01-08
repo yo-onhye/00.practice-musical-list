@@ -11,12 +11,17 @@ import {
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/list" />} /> 
-          <Route path="/list" element={<List />} />
-        </Routes>
-      </Router>
+      <header className="doc_header">
+        <h1 className="tit_header">Musical List</h1>
+      </header>
+      <main className="doc_main">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Navigate replace to="/list" />} /> 
+            <Route path="/list" element={<List />} />
+          </Routes>
+        </Router>
+      </main>
     </div>
   );
 }
