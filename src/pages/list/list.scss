@@ -1,1 +1,79 @@
 // musical contents
+.cont_musical {
+  .txt_g {
+    font-size: 12px;
+    line-height: 18px;
+    color: #555;
+    + .txt_g {
+      &::before {
+        display: inline-block;
+        width: 1px;
+        height: 10px;
+        margin: 3px 5px;
+        background-color: #e5e5e5;
+        vertical-align: top;
+        content: '';
+      }
+    }
+  }
+  .tag_g {
+    display: inline-block;
+    min-width: 24px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    background-color: #444;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    color: #eee;
+    vertical-align: top;
+  }
+  .item_musical {
+    padding: 20px;
+    + .item_musical {
+      border-top: 1px solid #e5e5e5;
+    }
+  }
+  .musical_thumb {
+    .thumb_img {
+      display: block;
+      width: 60%;
+      height: 0;
+      margin: 0 auto;
+      padding-top: 80%;
+      background-size: cover;
+      background-position: 50% 50%;
+    }
+  }
+  .musical_info {
+    margin-top: 20px;
+  }
+  .musical_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .txt_title {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+  .musical_price {
+    margin-top: 8px;
+    .num_price {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+      word-break: keep-all;
+    }
+  }
+  .musical_desc {
+    .txt_place {
+      display: block;
+      &::before {
+        display: none;
+      }
+    }
+  }
+}

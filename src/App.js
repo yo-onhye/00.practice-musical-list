@@ -1,4 +1,5 @@
 import List from "./pages/list/List";
+import './asset/styles/common.scss'
 import {
   BrowserRouter as Router,
   Routes,

@@ -8,13 +8,9 @@
       "runningTime": 150,
       "period": "2021.12.04 ~ 2022.02.27",
       "price": 99000,
-      "producersGroups": [
-        "PAGE1",
-        "이지나",
-        "최종윤"
-      ],
-      "musicalRound": [
-        "재연"
+      "musicalTag": [
+        "재연",
+        "인기"
       ]
     },
     {
@@ -25,29 +21,19 @@
       "runningTime": 160,
       "period": "2021.07.16 ~ 2021.09.05",
       "price": 150000,
-      "producersGroups": [
-        "CJ ENM",
-        "고선웅",
-        "이영훈"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "삼연"
       ]
     },
     {
       "musicalClassId": 3,
       "musicalClassName": "마마, 돈 크라이",
-      "musicalConcertHall": "SUV",
+      "musicalConcertHall": "두산아트센터 연강홀",
       "image": "https://ww.namu.la/s/60db1da083766ed85fb92be9244a90f443995ba54bf43aa254c670fd98ec1019ca214857d10bdd0e7daaa2031a576769c2d187add886a75d2348c7a0436d58c45106eaa73adddc8be32cf33692f57d7d1488ef59be49864228cdc8e3178f6703",
       "runningTime": 110,
       "period": "2021.05.27 ~ 2021.08.22",
       "price": 66000,
-      "producersGroups": [
-        "R&Dworks, PAGE1",
-        "이희준",
-        "박정아"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "육연"
       ]
     },
@@ -59,12 +45,7 @@
       "runningTime": 110,
       "period": "2021.05.18 ~ 2021.08.01",
       "price": 60000,
-      "producersGroups": [
-        "섬으로 간 나비",
-        "윤상원",
-        "박인영, 임준형"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "재연"
       ]
     },
@@ -76,12 +57,7 @@
       "runningTime": 110,
       "period": "2022.06 ~ 2022.09",
       "price": 66000,
-      "producersGroups": [
-        "홍컴퍼니",
-        "이희준",
-        "박현숙"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "사연"
       ]
     },
@@ -93,12 +69,7 @@
       "runningTime": 90,
       "period": "2021.09.15 ~ 2021.12.05",
       "price": 66000,
-      "producersGroups": [
-        "홍컴퍼니",
-        "이희준",
-        "신중현"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "재연"
       ]
     },
@@ -110,12 +81,7 @@
       "runningTime": 100,
       "period": "2021.11.02 ~ 2021.11.28",
       "price": 66000,
-      "producersGroups": [
-        "컴인컴퍼니",
-        "서윤미",
-        "서윤미"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "육연"
       ]
     },
@@ -127,12 +93,7 @@
       "runningTime": 110,
       "period": "2019.07.06~2019.10.20",
       "price": 66000,
-      "producersGroups": [
-        "네오 프로덕션",
-        "성종완",
-        "김은영"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "오연"
       ]
     },
@@ -144,12 +105,7 @@
       "runningTime": 110,
       "period": "2021.06.22 ~ 2021.09.05",
       "price": 66000,
-      "producersGroups": [
-        "CJ ENM",
-        "박천휴",
-        "윌 애러슨"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "사연"
       ]
     },
@@ -161,12 +117,7 @@
       "runningTime": 180,
       "period": "2022.06.11 ~ 2022.08.21",
       "price": 150000,
-      "producersGroups": [
-        "EMK뮤지컬컴퍼니",
-        "로버트 요한슨, 잭 머피",
-        "프랭크 와일드혼"
-      ],
-      "musicalRound": [
+      "musicalTag": [
         "삼연"
       ]
     }
