@@ -1,0 +1,3 @@
+{
+  "/musicalClasses/:musicalClassId": "/musicalClass?musicalClassId=:musicalClassId"
+}
