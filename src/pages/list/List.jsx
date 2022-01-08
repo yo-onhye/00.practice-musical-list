@@ -4,15 +4,13 @@ import axios from 'axios';
 import './list.scss';
 
 const List = () => {
+  const numIncrease = 5;
+  const [numLimit, setNumLimit] = useState(5);
   const [musical, setMusical] = useState([]);
   const [musicalList, setMusicalList] = useState([]);
   const [modalList, setModalList] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
-
-  const activeData = modalList.filter((item) =>
-    item.musicalClassId === activeIndex
-  );
 
   const fetchMusicals = async () => {
      const response = await axios.get(
@@ -23,11 +21,20 @@ const List = () => {
      setModalList(response.data.musicalClass);
   };
 
+  const showData = musicalList.slice(0, numLimit);
+
+  const activeData = modalList.filter((item) =>
+    item.musicalClassId === activeIndex
+  );
+
+  const controlShow = () => {
+    const limit = numLimit + numIncrease;
+    setNumLimit(limit);
+  }
+
   const closeModal = () => {
     setShowModal(false);
   }
-
-  console.log(showModal)
 
   useEffect(() => {
     fetchMusicals();
@@ -36,9 +43,10 @@ const List = () => {
   return (
     <>
     <div className="cont_musical">
-      {musicalList.length !== 0 ?
+      {showData.length !== 0 ?
+        <>
         <ul className="list_musical">
-          {musicalList.map(item => (
+          {showData.map(item => (
           <li key={item.musicalClassId} className="item_musical">
             <button type="button" className="btn_musical" onClick={()=> { setShowModal(true);setActiveIndex(item.musicalClassId) }}>
               <div className="musical_thumb">
@@ -70,6 +78,10 @@ const List = () => {
           </li>
           ))}
         </ul>
+        {musicalList.legth === showData.legth &&
+          <button type="button" className="btn_more" onClick={controlShow}>더보기</button>
+        }
+        </>
         : <div className="area_error">데이터를 불러올 수 없습니다.</div>
       }
     </div>
