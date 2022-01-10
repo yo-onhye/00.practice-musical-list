@@ -9,16 +9,28 @@ const List = () => {
   const [musical, setMusical] = useState([]);
   const [musicalList, setMusicalList] = useState([]);
   const [modalList, setModalList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
   const fetchMusicals = async () => {
-     const response = await axios.get(
-       'https://yo-onhye.github.io/00.practice-musical-list/db.json'
-     );
-     setMusical(response.data);
-     setMusicalList(response.data.musicalClasses);
-     setModalList(response.data.musicalClass);
+    try {
+      setError(null);
+      setMusical(null);
+      setLoading(true);
+
+      const response = await axios.get(
+        'https://yo-onhye.github.io/00.practice-musical-list/db.json'
+      );
+
+      setMusical(response.data);
+      setMusicalList(response.data.musicalClasses);
+      setModalList(response.data.musicalClass);
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
   };
 
   const showData = musicalList.slice(0, numLimit);
@@ -36,10 +48,14 @@ const List = () => {
     setShowModal(false);
   }
 
+
   useEffect(() => {
     fetchMusicals();
   }, []);
 
+  if (loading) return <div className="cont_loading"><span className="ico_loading"></span><span className="txt_loading">loading</span></div>;
+  if (error) return <div className="cont_error"><span className="txt_error">에러가 발생했습니다</span></div>;
+  if (!showData) return null;
   return (
     <>
     <div className="cont_musical">
