@@ -1,74 +1,75 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Modal from "../components/modal/Modal";
-import axios from 'axios';
+import apiFetch from '../components/api';
 import './list.scss';
 
 const List = () => {
-  const numIncrease = 5;
-  const [numLimit, setNumLimit] = useState(5);
-  const [musical, setMusical] = useState([]);
+  const numLimit = 2;
+  const [numPage, setNumPage] = useState(1);
+  const [totalCnt, setTotalCnt] = useState(0);
   const [musicalList, setMusicalList] = useState([]);
-  const [modalList, setModalList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [modalData, setModalData] = useState([]);
   const [error, setError] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [showModal, setShowModal] = useState(false);
-
-  const fetchMusicals = async () => {
-    try {
-      setError(null);
-      setMusical(null);
-      setLoading(true);
-
-      const response = await axios.get(
-        'https://yo-onhye.github.io/00.practice-musical-list/db.json'
-      );
-
-      setMusical(response.data);
-      setMusicalList(response.data.musicalClasses);
-      setModalList(response.data.musicalClass);
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
-  };
-
-  const showData = musicalList.slice(0, numLimit);
-
-  const activeData = modalList.filter((item) =>
-    item.musicalClassId === activeIndex
-  );
-
-  const controlShow = () => {
-    const limit = numLimit + numIncrease;
-    setNumLimit(limit);
-  }
+  const loadingRef = useRef(false);
+  
 
   const closeModal = () => {
     setShowModal(false);
   }
 
+  const showMore = () => {
+    setNumPage(numPage + 1);
+  }
 
-  useEffect(() => {
-    fetchMusicals();
-  }, []);
+  useEffect(() =>{
+    const getData = async () => {
+      try {
+        loadingRef.current = true;
 
-  if (loading) return <div className="cont_loading"><span className="ico_loading"></span><span className="txt_loading">loading</span></div>;
+        const response = await apiFetch({
+          url: '/musicalClasses',
+          params: {
+            '_limit': numLimit,
+            '_page': numPage
+          }
+        })
+
+        const response2 = await apiFetch({
+          url: '/musicalClass',
+          params: {
+            'musicalClassId': activeIndex
+          }
+        })
+
+        loadingRef.current = false;
+        setTotalCnt(response.data.length);
+
+        setMusicalList(state => state.concat(response.data));
+        setModalData(response2.data);
+      } catch (err) {
+        console.log(err)
+        setError(true);
+      }
+    }
+    getData();
+  }, [numPage,activeIndex])
+
+  if (loadingRef.current) return <div className="cont_loading"><span className="ico_loading"></span><span className="txt_loading">loading</span></div>;
   if (error) return <div className="cont_error"><span className="txt_error">에러가 발생했습니다</span></div>;
-  if (!showData) return null;
   return (
     <>
     <div className="cont_musical">
-      {showData.length !== 0 ?
+      {musicalList.length > 0 ?
         <>
         <ul className="list_musical">
-          {showData.map(item => (
-          <li key={item.musicalClassId} className="item_musical">
+          {musicalList.map((item, index) => (
+          <li key={`musical_${index}`} className="item_musical">
             <button type="button" className="btn_musical" onClick={()=> { setShowModal(true);setActiveIndex(item.musicalClassId) }}>
               <div className="musical_thumb">
                 <span className="thumb_img" style={{backgroundImage:"url("+item.image+")"}}></span>
               </div>
-  
               <div className="musical_info">
                 <div className="musical_title">
                   <strong className="txt_title">{item.musicalClassName}</strong>
@@ -94,16 +95,15 @@ const List = () => {
           </li>
           ))}
         </ul>
-        {musicalList.legth === showData.legth &&
-          <button type="button" className="btn_more" onClick={controlShow}>더보기</button>
-        }
+        {totalCnt > 0 && (
+          <button type="button" className="btn_more" onClick={showMore}>더보기</button>
+         )
+        } 
         </>
         : <div className="area_error">데이터를 불러올 수 없습니다.</div>
       }
     </div>
-    {showModal &&
-      <Modal activeData={activeData} closeModal={closeModal} />
-    }
+    <Modal activeData={modalData} closeModal={() => closeModal} showModal={showModal} />
     </>
   )
 }

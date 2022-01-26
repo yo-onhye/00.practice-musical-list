@@ -6,10 +6,10 @@ const Modal = ({ activeData, closeModal, showModal }) => {
   const modalRef = useRef(null);
   const modalData = activeData[0];
 
-  useOutsideClick(modalRef, closeModal);
+  // useOutsideClick(modalRef, () => closeModal());
 
   return (
-    <div className="modal_layer show">
+    <div className={showModal ? "modal_layer show" : "modal_layer"}>
       <div className="overlay_layer">
         <div ref={modalRef} className="cont_layer" tabIndex="-1" role="dialog" aria-modal="true">
           {modalData !== undefined && 
@@ -48,7 +48,7 @@ const Modal = ({ activeData, closeModal, showModal }) => {
             </div>
             </>
           }
-          <button type="button" className="btn_close" onClick={closeModal}><span className="ico_close">닫기</span></button>
+          <button type="button" className="btn_close" onClick={closeModal()}><span className="ico_close">닫기</span></button>
         </div>
       </div>
     </div>
